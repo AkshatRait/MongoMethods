@@ -61,17 +61,23 @@ app.post('/books', async (req, res) => {
     res.send(dbResponse);
 })
 
-app.delete("/books/:idOfBook", async(req,res)=>{
-    let id = req.params.idOfBook
-    let response = await Book.findByIdAndDelete(id);
-    res.send(response)
-})
+// app.delete("/books/:idOfBook", async(req,res)=>{
+//     let id = req.params.idOfBook
+//     let response = await Book.findByIdAndDelete(id);
+//     res.send(response)
+// })
 
 
 app.put("/books/:idOfBook", async (req,res)=>{
     let id = req.params.idOfBook;
     let update = req.body
     let response = await Book.findByIdAndUpdate(id, update)
+    res.send(response)
+})
+
+app.delete('/books/:idOfBooks', async(req,res)=>{
+    let id = req.params.idOfBooks
+    let response = await Book.deleteOne({_id : id})
     res.send(response)
 })
 // END ROUTES //
